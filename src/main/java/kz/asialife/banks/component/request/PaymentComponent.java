@@ -35,7 +35,7 @@ public class PaymentComponent extends CommonComponent {
 
             conn = DriverManager.getConnection(url, "mlm", "mlm");
 
-            String sql = "{ ? = call mlm.WEBSERVICE.reg_pay_doc_bank(?,?,?,?,?) }";  // connected to webserevice and call method from LIC
+            String sql = "{ ? = call mlm.WEBSERVICE.reg_pay_doc_bank(?,?,?,?) }";  // connected to webserevice and call method from LIC
 
             callableStatement = conn.prepareCall(sql);
 
@@ -50,6 +50,7 @@ public class PaymentComponent extends CommonComponent {
 
             //this is the main line to the return response
             response.setState(callableStatement.getString(1));
+            response.setSuccess(true);
             response.getMessage();
 
             callableStatement.close();

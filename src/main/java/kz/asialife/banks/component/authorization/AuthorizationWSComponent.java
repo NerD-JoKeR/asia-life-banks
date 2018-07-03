@@ -21,8 +21,6 @@ public class AuthorizationWSComponent {
         Connection conn = null;
         CallableStatement callableStatement = null;
 
-        //TODO maked  some changes
-
         try {
 
             DriverManager.registerDriver(new OracleDriver());

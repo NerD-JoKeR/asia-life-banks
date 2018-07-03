@@ -29,13 +29,14 @@ public class CommonComponent {
             String url = "jdbc:oracle:thin:@10.0.0.10:1526:bsolife";
             conn = DriverManager.getConnection(url, "mlm", "mlm");
 
-            String sql = "{ ? = call mlm.WEBSERVICE.activ_session(?,?) }";
+            String sql = "{ ? = call mlm.WEBSERVICE.activ_session(?) }";
             callableStatement = conn.prepareCall(sql);
             callableStatement.setString(2, request.getSessionId());
 
             callableStatement.registerOutParameter(1, java.sql.Types.VARCHAR);
 
             callableStatement.execute();
+
 
             String sessionStatus = callableStatement.getString(1);
 
@@ -52,6 +53,7 @@ public class CommonComponent {
                 response.setMessage("Session is empty");
             }
 
+            callableStatement.close();
             conn.close();
         } catch (Exception ex) {
             ex.printStackTrace();

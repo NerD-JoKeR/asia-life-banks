@@ -10,6 +10,8 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import javax.xml.bind.JAXBElement;
+
 @Endpoint
 public class WSEndpoint {
     private static final String NAMESPACE_URI = "http://asialife.kz/banks";
@@ -23,7 +25,6 @@ public class WSEndpoint {
 
     @Autowired
     private PaymentComponent paymentComponent;
-
 
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "authorizationWSRequest")

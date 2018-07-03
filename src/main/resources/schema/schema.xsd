@@ -37,58 +37,60 @@
 
 
 
-    <xs:complexType name="reqDocumentRequest">
-        <xs:complexContent>
-            <xs:extension base="asia:commonRequest">
-                <xs:sequence>
-                    <xs:element name="info" type="xs:string" />
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
-    <xs:complexType name="reqDocumentResponse">
-        <xs:complexContent>
-            <xs:extension base="asia:commonResponse">
-                <xs:sequence>
-                    <xs:element name="state" type="xs:string" />
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
-    <xs:element name="reqDocumentRequest" type="asia:reqDocumentRequest"/>
-
-    <xs:element name="reqDocumentResponse" type="asia:reqDocumentResponse"/>
+    <xs:element name="reqDocumentRequest">
+        <xs:complexType >
+            <xs:complexContent>
+                <xs:extension base="asia:commonRequest">
+                    <xs:sequence>
+                        <xs:element name="info" type="xs:string" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
 
 
-    <xs:complexType name="paymentRequest">
-        <xs:complexContent>
-            <xs:extension base="asia:commonRequest">
-                <xs:sequence>
-                    <xs:element name="docNumber" type="xs:string" />
-                    <xs:element name="sum" type="xs:string" />
-                    <xs:element name="status" type="xs:string" />
-                    <xs:element name="message" type="xs:string" />
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
+    <xs:element name="reqDocumentResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="asia:commonResponse">
+                    <xs:sequence>
+                        <xs:element name="state" type="xs:string" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
 
 
-    <xs:complexType name="paymentResponse">
-        <xs:complexContent>
-            <xs:extension base="asia:commonResponse">
-                <xs:sequence>
-                    <xs:element name="state" type="xs:string" />
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
 
 
-    <xs:element name="paymentRequest" type="asia:paymentRequest"/>
+    <xs:element name="paymentRequest">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="asia:commonRequest">
+                    <xs:sequence>
+                        <xs:element name="docNumber" type="xs:string" />
+                        <xs:element name="sum" type="xs:string" />
+                        <xs:element name="status" type="xs:string" />
+                        <xs:element name="message" type="xs:string" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
 
-    <xs:element name="paymentResponse" type="asia:paymentResponse"/>
+
+    <xs:element name="paymentResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="asia:commonResponse">
+                    <xs:sequence>
+                        <xs:element name="state" type="xs:string" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
 
 </xs:schema>

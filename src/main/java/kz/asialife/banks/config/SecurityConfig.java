@@ -24,6 +24,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${security.user.password.kaspi}")
     private String kaspiPassword;
 
+    @Value("${security.user.name.asia}")
+    private String asiaUsername;
+
+    @Value("${security.user.password.asia}")
+    private String asiaPassword;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -44,7 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(NoOpPasswordEncoder.getInstance())
                 .withUser(bccUsername).password(bccPassword).roles("BCC")
                 .and()
-                .withUser(kaspiUsername).password(kaspiPassword).roles("KASPI");
+                .withUser(kaspiUsername).password(kaspiPassword).roles("KASPI")
+                .and()
+                .withUser(asiaUsername).password(asiaPassword).roles("ASIA");
     }
 
 }
