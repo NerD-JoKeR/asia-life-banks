@@ -12,8 +12,7 @@ import java.sql.SQLException;
 
 public class CommonComponent {
 
-    public CommonResponse checkSession(CommonRequest request){
-        CommonResponse response = new CommonResponse();
+    public <ChildClass extends CommonResponse> ChildClass checkSession(CommonRequest request, ChildClass response){
         String sessionId = request.getSessionId();
         if(sessionId == null){
             response.setSuccess(false);
@@ -26,8 +25,8 @@ public class CommonComponent {
 
         try {
             DriverManager.registerDriver(new OracleDriver());
-            String url = "jdbc:oracle:thin:@10.0.0.10:1526:bsolife";
-            conn = DriverManager.getConnection(url, "mlm", "mlm");
+            String url = "TODO correct conn url";
+            conn = DriverManager.getConnection(url, "log", "pass");
 
             String sql = "{ ? = call mlm.WEBSERVICE.activ_session(?) }";
             callableStatement = conn.prepareCall(sql);
@@ -40,17 +39,11 @@ public class CommonComponent {
 
             String sessionStatus = callableStatement.getString(1);
 
-            //TODO in DB create session statuses by this names below
 
-            if(sessionStatus.equals("BLOCKED")){
+            if(sessionStatus.equals("EXPIRED")){
                 response.setSuccess(false);
-                response.setMessage("Sessiion is blocked");
-            } else if(sessionStatus.equals("EXPIRED")){
-                response.setSuccess(false);
-                response.setMessage("Session is expired");
-            } else if(sessionStatus.equals("ERROR")){
-                response.setSuccess(false);
-                response.setMessage("Session is empty");
+                response.setMessage("Web-Service session is expired. Please, update your SessionID and try again!");
+                return response;
             }
 
             callableStatement.close();

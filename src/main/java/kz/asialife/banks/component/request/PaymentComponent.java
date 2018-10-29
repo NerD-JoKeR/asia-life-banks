@@ -18,9 +18,9 @@ public class PaymentComponent extends CommonComponent {
 
     public PaymentResponse payment(PaymentRequest request) {
 
-        CommonResponse commonResponse = checkSession(request);
+        PaymentResponse commonResponse = checkSession(request, new PaymentResponse());
         if(commonResponse != null){
-            return (PaymentResponse)commonResponse;
+            return commonResponse;
         }
 
         PaymentResponse response = new PaymentResponse();
@@ -31,9 +31,9 @@ public class PaymentComponent extends CommonComponent {
         try {
             DriverManager.registerDriver(new OracleDriver()); //oracle driver
 
-            String url = "jdbc:oracle:thin:@10.0.0.10:1526:bsolife"; //connection to DB
+            String url = "TODO correct conn url"; //connection to DB
 
-            conn = DriverManager.getConnection(url, "mlm", "mlm");
+            conn = DriverManager.getConnection(url, "log", "pass");
 
             String sql = "{ ? = call mlm.WEBSERVICE.reg_pay_doc_bank(?,?,?,?) }";  // connected to webserevice and call method from LIC
 

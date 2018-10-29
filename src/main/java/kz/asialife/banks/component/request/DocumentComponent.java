@@ -18,9 +18,9 @@ public class DocumentComponent extends CommonComponent {
 
     public ReqDocumentResponse document(ReqDocumentRequest request) {
 
-        CommonResponse commonResponse = checkSession(request);
+        ReqDocumentResponse commonResponse = checkSession(request, new ReqDocumentResponse());
         if(commonResponse != null){
-            return (ReqDocumentResponse)commonResponse;
+            return commonResponse;
         }
 
         ReqDocumentResponse response = new ReqDocumentResponse();
@@ -32,9 +32,9 @@ public class DocumentComponent extends CommonComponent {
 
             DriverManager.registerDriver(new OracleDriver()); //oracle driver
 
-            String url = "jdbc:oracle:thin:@10.0.0.10:1526:bsolife"; //connection to DB
+            String url = "TODO correct conn url"; //connection to DB
 
-            conn = DriverManager.getConnection(url, "mlm", "mlm");
+            conn = DriverManager.getConnection(url, "log", "pass");
 
             String sql = "{ ? = call mlm.WEBSERVICE.reg_doc_bank(?) }";  // connected to webserevice and call method from LIC
 

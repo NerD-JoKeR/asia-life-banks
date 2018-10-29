@@ -18,6 +18,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${security.user.password.bcc}")
     private String bccPassword;
 
+    @Value("${security.user.name.akb}")
+    private String akbUsername;
+
+    @Value("${security.user.password.akb}")
+    private String akbPassword;
+
     @Value("${security.user.name.kaspi}")
     private String kaspiUsername;
 
@@ -49,6 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .passwordEncoder(NoOpPasswordEncoder.getInstance())
                 .withUser(bccUsername).password(bccPassword).roles("BCC")
+                .and()
+                .withUser(akbUsername).password(akbPassword).roles("AKB")
                 .and()
                 .withUser(kaspiUsername).password(kaspiPassword).roles("KASPI")
                 .and()
